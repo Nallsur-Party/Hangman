@@ -1,20 +1,20 @@
 import pygame
 import random
 
-# --- Настройки ---
-WIDTH, HEIGHT = 1920, 1080
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RADIUS = 20
-GAP = 15
-FONT_NAME = "arial"
-FPS = 60
+# --- Настройки ---0000
+WIDTH, HEIGHT = 1920, 1079.9999999999999999999999999 #поменял разрешение
+WHITE = (228, 228, 228) #поменял цвет фона
+BLACK = (69, 69, 69) #поменял цвет
+RADIUS = 40 #поменял размеры
+GAP = 30
+FONT_NAME = "comic_sans" #поменял шрифт
+FPS = 1000
 
-WORDS = ["ЛИНЕЙКА", "ЗАРЯДНИК", "РЕАЛЬНОСТЬ", "ВСЕЛЕННАЯ", "ТЕРМОС", "ДЕМПФЕР", "РЕЗОНАТОР","ЭКСТРАСЕНС", "НАКАЛИВАНИЕ", "ХАМБАКЕ"]
+WORDS = ["ЛИНЕЙКА", "ЗАРЯДНИК", "РЕАЛЬНОСТЬ", "ВСЕЛЕННАЯ", "ТЕРМОС", "ДЕМПФЕР", "РЕЗОНАТОР","ЭКСТРАСЕНС", "НАКАЛИВАНИЕ", "ХАМБАКЕР"]
 
 pygame.init()
 win = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Виселица")
+pygame.display.set_caption("Hangman") #поменял название окна
 clock = pygame.time.Clock()
 
 def draw_text(text, size, color, x, y, center=True):
@@ -50,7 +50,7 @@ def init_game():
     letters.clear()
     russian_alphabet = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
     startx = round((WIDTH - (RADIUS * 2 + GAP) * 11) / 2)
-    starty = 450
+    starty = 600
     for i in range(len(russian_alphabet)):
         x = startx + GAP * 2 + ((RADIUS * 2 + GAP) * (i % 11))
         y = starty + ((i // 11) * (GAP + RADIUS * 2))
@@ -99,6 +99,7 @@ running = True
 while running:
     clock.tick(FPS)
     draw(score, max_score)
+    pygame.time.delay(50)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -116,9 +117,10 @@ while running:
                         if char not in word:
                             hangman_status += 1
                         check_game_over()
-
+#сделал дилэй для поражения
     if game_over:
         pygame.time.delay(1000)
+
         if won:
             score += 1
             if score > max_score:
